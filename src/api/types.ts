@@ -2,6 +2,7 @@ export interface RequestConfig extends RequestInit {
   url: string
   timeout?: number
   auth?: boolean
+  mock?: boolean
 }
 
 export type RequestInterceptor = (

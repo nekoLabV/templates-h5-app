@@ -5,6 +5,7 @@ import type {
   ResponseInterceptor,
   ErrorInterceptor
 } from './types'
+import { mockManager } from './mock'
 
 class HttpClient {
   requestInterceptors = new InterceptorManager<RequestInterceptor>()
@@ -12,6 +13,24 @@ class HttpClient {
   errorInterceptors = new InterceptorManager<ErrorInterceptor>()
 
   async request<T = any>(config: RequestConfig): Promise<T> {
+    // mock 请求
+    if (config.mock) {
+      const handler = mockManager.get(config.url)
+  
+      if (!handler) {
+        throw new Error(`Mock not found: ${config.url}`)
+      }
+  
+      let data = await handler(config)
+  
+      // 响应拦截
+      for (const interceptor of this.responseInterceptors.getHandlers()) {
+        data = await interceptor(data)
+      }
+  
+      return data
+    }
+
     try {
       // 请求拦截
       for (const interceptor of this.requestInterceptors.getHandlers()) {
