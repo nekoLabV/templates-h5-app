@@ -13,8 +13,13 @@ class HttpClient {
   errorInterceptors = new InterceptorManager<ErrorInterceptor>()
 
   async request<T = any>(config: RequestConfig): Promise<T> {
-    // mock 请求
-    if (config.mock) {
+    // 使用 mock 数据
+    const useMock =
+      config.mock !== undefined
+        ? config.mock                                                           // 单接口优先
+        : import.meta.env.VITE_USE_API_MOCK === 'true' ? true : false           // 否则看全局
+
+    if (useMock) {
       const handler = mockManager.get(config.url)
   
       if (!handler) {
