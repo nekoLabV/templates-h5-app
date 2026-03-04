@@ -1,9 +1,12 @@
 import { createApp } from 'vue'
-import './style.css'
+import '@/assets/css/index.css'
+import '@/assets/scss/index.scss'
 import App from './App.vue'
 import '@/mock'
-import { API_CONFIG } from '@/config/request'
 
-console.log('API_CONFIG', API_CONFIG)
+import UI from '@/components/common'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(UI)
+
+app.mount('#app')

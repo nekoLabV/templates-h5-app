@@ -51,8 +51,6 @@ class HttpClient {
       }, timeout)
 
       const REQUEST_URL = `${import.meta.env.VITE_API_URL}${config.url}`
-      console.log('VITE_API_URL', import.meta.env.VITE_API_URL)
-      console.log('REQUEST_URL', REQUEST_URL)
       const response = await fetch(REQUEST_URL, {
         ...config,
         signal: controller.signal

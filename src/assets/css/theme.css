@@ -1,0 +1,16 @@
+:root {
+  --white: #ffffff;
+  --primary: #2c9a3b;
+  --secondary: #034107;
+
+  --btn-primary: var(--primary);
+  --btn-success: var(--primary);
+  --btn-warning: #fac03d;
+  --btn-danger: #FF2E00;
+  --btn-size-sm: 10px 12px;
+  --btn-size-md: 12px 16px;
+  --btn-size-lg: 16px 20px;
+  --btn-border-radius-sm: 4px;
+  --btn-border-radius-md: 8px;
+  --btn-border-radius-lg: 12px;
+}
