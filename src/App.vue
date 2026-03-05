@@ -1,9 +1,79 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { getUserInfo } from '@/services'
 
 const isLoading = ref(false)
 const input = ref()
+
+// 基础示例
+const checked1 = ref(false)
+const checked2 = ref(true)
+
+// 尺寸示例
+const sizeSm = ref(true)
+const sizeMd = ref(false)
+const sizeLg = ref(true)
+
+// 禁用示例
+const disabled1 = ref(false)
+const disabled2 = ref(true)
+
+// 半选示例
+const indeterminate1 = ref(true)
+
+// 标签示例
+const label1 = ref(false)
+
+// 自定义值示例
+const customValue = ref('no')
+
+// 复选框组示例
+const checkedCities = ref(['上海', '广州'])
+
+// 垂直布局示例
+const checkedFruits = ref(['苹果'])
+
+// 限制选择示例
+const checkedColors = ref(['红色'])
+
+// 全选功能示例
+const checkedItems = ref(['选项 A', '选项 C'])
+const checkAll = computed({
+  get: () => checkedItems.value.length === 3,
+  set: (val) => {
+    checkedItems.value = val ? ['选项 A', '选项 B', '选项 C'] : []
+  }
+})
+const isIndeterminate = computed(() => {
+  return checkedItems.value.length > 0 && checkedItems.value.length < 3
+})
+
+const handleCheckAll = (val: boolean) => {
+  checkedItems.value = val ? ['选项 A', '选项 B', '选项 C'] : []
+}
+
+// 错误状态
+const error1 = ref(false)
+
+// 方法调用示例
+const methodChecked = ref(false)
+const checkboxRef = ref()
+
+const check = () => {
+  checkboxRef.value?.check()
+}
+
+const uncheck = () => {
+  checkboxRef.value?.uncheck()
+}
+
+const toggle = () => {
+  checkboxRef.value?.toggle()
+}
+
+const focusInput = () => {
+  checkboxRef.value?.focus()
+}
 
 onMounted(async () => {
   await getUserInfo()
@@ -116,6 +186,43 @@ const clickBtn = async () => {
       组合样式文本
     </Text>
   </p>
+  <br/>
+  <p>
+    <!-- 基础用法 -->
+    <h3>基础复选框</h3>
+    <Checkbox v-model="checked1">选项 1</Checkbox>
+    <Checkbox v-model="checked2">选项 2</Checkbox>
+
+    <!-- 不同尺寸 -->
+    <h3>尺寸变体</h3>
+    <Checkbox v-model="sizeSm" size="sm">小尺寸</Checkbox>
+    <Checkbox v-model="sizeMd" size="md">中尺寸</Checkbox>
+    <Checkbox v-model="sizeLg" size="lg">大尺寸</Checkbox>
+
+    <!-- 禁用状态 -->
+    <h3>禁用状态</h3>
+    <Checkbox v-model="disabled1" disabled>禁用未选中</Checkbox>
+    <Checkbox v-model="disabled2" disabled>禁用已选中</Checkbox>
+
+    <!-- 半选状态 -->
+    <h3>半选状态</h3>
+    <Checkbox v-model="indeterminate1" :indeterminate="true">半选</Checkbox>
+
+    <!-- 带标签 -->
+    <h3>带标签</h3>
+    <Checkbox v-model="label1" label="同意条款" />
+
+    <!-- 自定义值 -->
+    <h3>自定义值</h3>
+    <Checkbox 
+      v-model="customValue"
+      :true-value="'yes'"
+      :false-value="'no'"
+    >
+      同意 (当前值: {{ customValue }})
+    </Checkbox>
+  </p>
+  <br>
   <p>
     <Button :loading="isLoading" @click="clickBtn">查看更多</Button>
   </p>

@@ -13,4 +13,8 @@
   --btn-border-radius-sm: 4px;
   --btn-border-radius-md: 8px;
   --btn-border-radius-lg: 12px;
+
+  --checkbox-size-sm: 14px;
+  --checkbox-size-md: 16px;
+  --checkbox-size-lg: 18px;
 }
