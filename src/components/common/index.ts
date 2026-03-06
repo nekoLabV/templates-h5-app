@@ -5,6 +5,7 @@ import Input from './Input.vue'
 import Grid from './Grid.vue'
 import GridItem from './GridItem.vue'
 import Checkbox from './Checkbox.vue'
+import Swiper from './Swiper.vue'
 
 const components: Record<string, Component> = {
   Text,
@@ -12,7 +13,8 @@ const components: Record<string, Component> = {
   Input,
   Grid,
   GridItem,
-  Checkbox
+  Checkbox,
+  Swiper
 }
 
 export default {

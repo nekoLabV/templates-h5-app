@@ -75,6 +75,21 @@ const focusInput = () => {
   checkboxRef.value?.focus()
 }
 
+const swiperItems = ref([
+  {
+    title: 'swiper1'
+  },
+  {
+    title: 'swiper2'
+  },
+  {
+    title: 'swiper3'
+  },
+  {
+    title: 'swiper4'
+  }
+])
+
 onMounted(async () => {
   await getUserInfo()
 })
@@ -97,6 +112,17 @@ const clickBtn = async () => {
 </script>
 
 <template>
+  <p>
+    <Swiper 
+      :items="swiperItems" 
+      :slidesPerView="2"
+      pagination>
+      <template #slide="{ item, index }">
+        <div>{{ item.title }}</div>
+        <div>{{ index }}</div>
+      </template>
+    </Swiper>
+  </p>
   <p>
     <!-- 基础用法 -->
     <Text>普通文本</Text>

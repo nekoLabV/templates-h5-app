@@ -245,12 +245,8 @@ defineExpose({
   }
   /* 悬停状态 */
   &:hover:not(.is-disabled) #{$visual} {
-    
+    border-color: var(--checkbox-hover-border, #409eff);
   }
-}
-
-.checkbox:hover:not(.is-disabled) .checkbox__visual {
-  border-color: var(--checkbox-hover-border, #409eff);
 }
 
 /* 聚焦状态 */
