@@ -119,5 +119,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-
+.swiper-slide {
+  min-height: 100px;
+}
 </style>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue'
 import { getUserInfo } from '@/services'
+import Poster from './components/Poster.vue'
 
 const isLoading = ref(false)
 const input = ref()
@@ -112,6 +113,7 @@ const clickBtn = async () => {
 </script>
 
 <template>
+  <Poster></Poster>
   <p>
     <Swiper 
       :items="swiperItems" 
