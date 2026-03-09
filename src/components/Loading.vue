@@ -1,0 +1,91 @@
+<script lang="ts" setup>
+defineProps({
+  size: {
+    type: String,
+    default: '20px'
+  },
+  svgSize: {
+    type: String,
+    default: '16px'
+  }
+})
+</script>
+
+<template>
+  <div class="loading-spinner" :style="{ '--size': size, '--svg-size': svgSize }">
+    <svg class="loading-spinner__circle-svg" viewBox="25 25 50 50">
+      <circle
+        class="loading-spinner__circle-stroke"
+        cx="50"
+        cy="50"
+        r="20"
+        fill="none"
+        stroke-width="2"
+        stroke-miterlimit="10"
+      />
+    </svg>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.loading-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  fill: currentColor;
+  stroke: currentColor;
+  background-color: rgba($color: var(--map-primary), $alpha: 0.48);
+
+  &__circle-svg {
+    animation: loading-spinner-rotate 1.28973s linear infinite;
+    height: var(--svg-size);
+    width: var(--svg-size);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  &__circle-stroke {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: loading-spinner-dash 2s ease-in-out infinite;
+    stroke-linecap: round;
+    stroke-width: 5px !important;
+  }
+}
+
+@keyframes loading-spinner-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-spinner-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+</style>

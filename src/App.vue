@@ -113,7 +113,8 @@ const clickBtn = async () => {
 </script>
 
 <template>
-  <Poster></Poster>
+  <p v-loading="true">11</p>
+  <Poster v-loading="true"></Poster>
   <p>
     <Swiper 
       :items="swiperItems" 
