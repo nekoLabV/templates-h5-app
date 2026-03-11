@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "html2canvas": "^1.4.1",
+    "lodash-es": "^4.17.23",
     "pinia": "^3.0.4",
     "swiper": "^12.1.2",
     "vue": "^3.5.25"

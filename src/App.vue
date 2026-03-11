@@ -2,6 +2,7 @@
 import { onMounted, ref, computed } from 'vue'
 import { getUserInfo } from '@/services'
 import Poster from './components/Poster.vue'
+import Card from '@/components/Card.vue'
 
 const isLoading = ref(false)
 const input = ref()
@@ -78,16 +79,28 @@ const focusInput = () => {
 
 const swiperItems = ref([
   {
-    title: 'swiper1'
+    title: "肥料论坛",
+    content: '农药制剂创新技术研讨会：展示高效环保剂型研发成果。'
   },
   {
-    title: 'swiper2'
+    title: "全球农药工业发展",
+    content: '植保无人机与精准农业论坛：探讨智能化装备在植保中的应用。'
   },
   {
-    title: 'swiper3'
+    title: "上海新国际博览中心，C5馆",
+    content: '全球农化新品发布会：企业首发创新产品与技术解决方案。'
   },
   {
-    title: 'swiper4'
+    title: "肥料论坛",
+    content: '农药制剂创新技术研讨会：展示高效环保剂型研发成果。'
+  },
+  {
+    title: "全球农药工业发展",
+    content: '植保无人机与精准农业论坛：探讨智能化装备在植保中的应用。'
+  },
+  {
+    title: "上海新国际博览中心，C5馆",
+    content: '全球农化新品发布会：企业首发创新产品与技术解决方案。'
   }
 ])
 
@@ -113,16 +126,17 @@ const clickBtn = async () => {
 </script>
 
 <template>
-  <p v-loading="true">11</p>
-  <Poster v-loading="true"></Poster>
+  <Poster></Poster>
   <p>
     <Swiper 
       :items="swiperItems" 
-      :slidesPerView="2"
+      :cols="3"
       pagination>
-      <template #slide="{ item, index }">
-        <div>{{ item.title }}</div>
-        <div>{{ index }}</div>
+      <template #slide="{ item }">
+        <Card>
+          <template #title>{{ item.title }}</template>
+          <div>{{ item.content }}</div>
+        </Card>
       </template>
     </Swiper>
   </p>
