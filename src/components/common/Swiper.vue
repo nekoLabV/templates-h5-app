@@ -21,7 +21,9 @@ interface Props {
   // 分页器类型
   paginationType?: 'bullets' | 'fraction' | 'progressbar'
   // 每次显示的幻灯片数量
-  slidesPerView?: number | 'auto'
+  cols?: number | 'auto'
+  // 每页显示的行数
+  rows: 1,
   // 幻灯片间距
   spaceBetween?: number
   // 是否启用触摸
@@ -47,8 +49,8 @@ const props = withDefaults(defineProps<Props>(), {
   navigation: true,
   pagination: true,
   paginationType: 'bullets',
-  slidesPerView: 1,
-  spaceBetween: 0,
+  cols: 1,
+  spaceBetween: 10,
   allowTouchMove: true,
   customNavigation: false,
   effect: 'slide',
@@ -71,7 +73,7 @@ const emit = defineEmits<{
 const config = computed(() => {
   return {
     loop: props.loop,
-    slidesPerView: props.slidesPerView,
+    slidesPerView: props.cols,
     spaceBetween: props.spaceBetween,
     autoplay: props.autoplay ? { delay: props.autoplayDelay } : false,
     pagination: props.pagination ? { 

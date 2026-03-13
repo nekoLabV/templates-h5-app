@@ -2,6 +2,8 @@
   --white: #ffffff;
   --primary: #2c9a3b;
   --secondary: #034107;
+  --text-primary: #232323;
+  --text-light: #5e5e5e;
 
   --btn-primary: var(--primary);
   --btn-success: var(--primary);
@@ -17,4 +19,7 @@
   --checkbox-size-sm: 14px;
   --checkbox-size-md: 16px;
   --checkbox-size-lg: 18px;
+
+  --container-max-width: 1280px;
+  --container-padding-x: 20px;
 }
